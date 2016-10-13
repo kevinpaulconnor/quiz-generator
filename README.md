@@ -1,28 +1,9 @@
 Quiz Quartet
 ==========
 
-Quiz Quartet was built to automate the process for generating a quiz so no developer has to be involved and write repetitive code! Check out the project at [http://quiz-generator.herokuapp.com](http://quiz-generator.herokuapp.com)
+Quiz Quartet was built by Vox Media to automate the process for generating a quiz so no developer has to be involved and write repetitive code! Check out the project at [http://quiz-generator.herokuapp.com](http://quiz-generator.herokuapp.com)
 
-
-## Running it locally
-
-This app uses Middleman, so cd to your project directory and just run:
-
-##### Install Middleman
-
-`gem install middleman`
-
-##### Install gems
-
-`bundle install`
-
-##### Run server
-
-`bundle exec middleman server`
-
-##### Generate static site
-
-`bundle exec middleman build`
+The root repository uses Middleman to generate the quiz-generator files, but this fork is going to eliminate Middleman in favor of static html files.
 
 
 ## How does the tool work?
@@ -39,14 +20,10 @@ Next, the editor picks from one of Vox Media’s verticals (the tool currently s
 The quiz dynamically generates an array of multiple choice questions from a JSON object. Users’ answers are highlighted when selected, then the chosen string is compared to the correct answer. Users can also see a hint for each question. Scores are incremented if the user answers correctly, and the final result is displayed at the end of the quiz for users to share on social media.
 
 
-
-## What’s next?
-The app is fully functional, but we would like to add more options for creating different kinds of quizzes (true/false, flowchart-ish). We’d also like to make options for inserting images/video/audio within questions, answers, and hints (as our project is currently completely text-based). We’d also like to polish/write better Javascript!
-
-
 ## License
 
-Copyright (c) 2014 Vox Media Inc., KK Rebecca Lai, Nicole Zhu, Adam Baumgartner
+Original Work Copyright (c) 2014 Vox Media Inc., KK Rebecca Lai, Nicole Zhu, Adam Baumgartner
+Modified Work Copyright 2016 Kevin Connor
 
 BSD license
 
