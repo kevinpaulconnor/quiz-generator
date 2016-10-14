@@ -39,11 +39,11 @@
   function addJS() {
   	quizType = $('input[name="quiz-type"]:checked').val();
 		if (quizType == 'quiz') {
-			$('body').append('<script src="/javascripts/quiz.js" type="text/javascript"><\/script>');
+			$('body').append('<script src="s/quiz.js" type="text/javascript"><\/script>');
 		} else if (quizType == 'flowchart') {
-			$('body').append('<script src="/javascripts/flowchart.js" type="text/javascript"><\/script>');
+			$('body').append('<script src="s/flowchart.js" type="text/javascript"><\/script>');
 		} else {
-      $('body').append('<script src="/javascripts/binary.js" type="text/javascript"><\/script>');
+      $('body').append('<script src="s/binary.js" type="text/javascript"><\/script>');
     }
   }
 
