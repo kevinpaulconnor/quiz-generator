@@ -39,6 +39,12 @@
   <div class="quiz-container"></div>
 </div>
 
-<script src="s/jquery-min.js"></script>
-<script src="s/tabletop.js"></script>
-<script src="s/getdata.js"></script>
+<script type="text/javascript">
+// front end cache bust
+var cacheBust = ['s/jquery-min.js', 's/tabletop.js', 's/getdata.js'];   
+for (i=0; i < cacheBust.length; i++){
+     var el = document.createElement('script');
+     el.src = cacheBust[i]+"?v=" + Math.floor(Math.random()*10000);
+     document.getElementsByTagName('head')[0].appendChild(el);
+}
+</script>
