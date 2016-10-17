@@ -47,28 +47,9 @@
     }
   }
 
-  function changeTemplate() {
-  	if (quizType == 'quiz') {
-      $('#quiz-template').attr('href', 'https://drive.google.com/previewtemplate?id=0AlMgrVuuAI0MdGl6NngwMGYtX3RHQjlic0xzNnBjUGc&mode=public').addClass('template');
-      $('#example-spreadsheet').val('https://docs.google.com/spreadsheet/pub?key=0AlMgrVuuAI0MdGl6NngwMGYtX3RHQjlic0xzNnBjUGc&output=html');
-    } else if (quizType == 'flowchart') {
-      $('#quiz-template').attr('href', 'https://drive.google.com/previewtemplate?id=0AlMgrVuuAI0MdE9ZNVhnYmk0TUdidGhiZTgwT0F6MGc&mode=public').addClass('template');
-      $('#example-spreadsheet').val('https://docs.google.com/spreadsheet/pub?key=0ArcRX35HpjojdGlSR012UjVDZkpIM19ObVY5TE03U2c&output=html');
-    } else {
-      $('#quiz-template').attr('href', 'https://drive.google.com/previewtemplate?id=0AlMgrVuuAI0MdFlNdHlNay1ibnNSWU93TThTS1VuSVE&mode=public').addClass('template');
-      $('#example-spreadsheet').val('https://docs.google.com/spreadsheets/d/1UIiEZwiwsOAZ7jTZ8xzJJj35Y55Mg6TCcVR4qM_A1rg/pubhtml');
-    }
-  }
-
   function submitquiz() {
-  	quizType = $('input[name="quiz-type"]:checked').val();
-  	if (quizType == 'quiz') {
-  		$('.quiz-container').empty();
-  		buildquiz();
-  	} else {
   		$('.quiz-container').empty();
   		buildflowchart();
-  	}
   }
 
   function getStylesheet() {
@@ -97,18 +78,8 @@
   }
 
   $(document).ready(function() {
-    $('input:radio[name=quiz-type]').click(function() {
-      quizType = $('input:radio[name=quiz-type]:checked').val();
-      changeTemplate();
-    });
-
     $('#build').on('click', function(){
-        if (quizType != undefined) {
           submitquiz();
-        }
-        else {
-          alert("Please choose a quiz type at the top of the page!");
-        }
     })
   })  
 })(jQuery);
