@@ -62,7 +62,7 @@
   function embed(input) {
     $("#embedcode").html("&lt;div class='quiz-container'></div>&lt;script type='text/javascript'>window.jQuery || document.write(\"&lt;script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>&lt;&#92;/script>\");&lt;/script>&lt;script type='text/javascript'>var input = " + JSON.stringify(input) + "; var pubStylesheet = '" + pubStylesheet + "'; var pub = '" + pub + "'; &lt;/script>&lt;script src='http://assets.sbnation.com.s3.amazonaws.com/features/quiz-generator/" + quizType + ".js'>&lt;/script>");
     // $("#embedcode").html("&lt;div class='quiz-container'></div>&lt;script type='text/javascript'>window.jQuery || document.write('&lt;script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>&lt;&#92;/script>');&lt;/script>&lt;script type='text/javascript'>var input = " + JSON.stringify(input) + "; var pubStylesheet = '" + pubStylesheet + "';&lt;/script>&lt;script src='/javascripts/" + quizType + ".js'>&lt;/script>");
-    addJS();
+    //addJS();
   }
 
   function buildquiz(){
@@ -71,8 +71,19 @@
     getStylesheet();
   }
 
+  function googleSpreadsheetHack(url) {
+  	// published spreadsheet urls have changed. translate into
+  	// https://docs.google.com/spreadsheet/pub?key=$KEY&output=html
+  	// format, which seems to be what tabletop.js finds acceptable
+  	// It's probably possible to hack into tabletop to fix, but I'm going
+  	// to pass it what it's used to. fragile!
+  	var split = url.split("/");
+  	var key = split[5] 	
+  	return 'https://docs.google.com/spreadsheet/pub?key='+key+'&output=html'
+  }
+
   function buildflowchart() {
-    url = $('#url').val();
+    url = googleSpreadsheetHack($('#url').val());
     init();
     getStylesheet();
   }
