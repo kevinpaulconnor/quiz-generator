@@ -62,7 +62,7 @@
       $(".quiz-container").append("<div class='question-" + questionNumber + "'><div class='question'>" + input[currentRow].text + "</div></div>");
     } else {
       if ($(window).width() > 500) {
-        $(".quiz-container").append("<div class='question-" + questionNumber + "' style='display:none;'><div class='question'>" + input[currentRow].text + writeBullets(slug) + "</div></div>");
+        $(".quiz-container").append("<div class='question-" + questionNumber + "' style='display:none;'><div class='question'>" + input[currentRow].text + writeBullets() + "</div></div>");
         $(".question-" + (questionNumber)).fadeIn('slow');
       } else {
         $(".quiz-container").append("<div class='question-" + questionNumber + "'><div class='question'>" + input[currentRow].text + writeBullets(slug) + "</div></div>");
@@ -73,7 +73,7 @@
     trackEvent('q' + questionNumber + '-displayed', 'Q' + questionNumber + ' displayed');
   };
   
-  var writeBullets = function(slug) {
+  var writeBullets = function() {
   	returnText = "";
   	if (input[currentRow].bullets != "") {
   		returnText = '<ul type="disc">';
