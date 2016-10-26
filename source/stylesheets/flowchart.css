@@ -62,3 +62,8 @@ p.down-arrow {
     margin-top: 2em;
     margin-bottom: 0px;
     line-height: 1.5em; }
+    
+img.help {
+	width: 16px;
+	height: 16px;
+}

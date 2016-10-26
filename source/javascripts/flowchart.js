@@ -58,14 +58,16 @@
   // build question in flowchart - scrolldown enabled for all questions except the last one
   var buildQuestion = function(slug) {
     compareSlug(slug);
+    // these three conditionals have some wet code, now that more features are being added
+    // well, it was already a little wet
     if (currentRow === 0) {
-      $(".quiz-container").append("<div class='question-" + questionNumber + "'><div class='question'>" + input[currentRow].text + "</div></div>");
+      $(".quiz-container").append("<div class='question-" + questionNumber + "'><div class='question'>" + input[currentRow].text + moreInformation() + "</div></div>");
     } else {
       if ($(window).width() > 500) {
-        $(".quiz-container").append("<div class='question-" + questionNumber + "' style='display:none;'><div class='question'>" + input[currentRow].text + writeBullets() + "</div></div>");
+        $(".quiz-container").append("<div class='question-" + questionNumber + "' style='display:none;'><div class='question'>" + input[currentRow].text + writeBullets() + moreInformation() + "</div></div>");
         $(".question-" + (questionNumber)).fadeIn('slow');
       } else {
-        $(".quiz-container").append("<div class='question-" + questionNumber + "'><div class='question'>" + input[currentRow].text + writeBullets(slug) + "</div></div>");
+        $(".quiz-container").append("<div class='question-" + questionNumber + "'><div class='question'>" + input[currentRow].text + writeBullets(slug) + moreInformation() + "</div></div>");
         pageScroll(".question-" + (questionNumber));
       }
     }
@@ -73,6 +75,8 @@
     trackEvent('q' + questionNumber + '-displayed', 'Q' + questionNumber + ' displayed');
   };
   
+  // might be a good idea to drive writeBullets and moreInformation from the same code
+  // i.e. call addExtras() from buildQuestion - skip the returnText handling that way
   var writeBullets = function() {
   	returnText = "";
   	if (input[currentRow].bullets != "") {
@@ -82,6 +86,14 @@
   				returnText += '<li>'+ bullets[i] +'</li>'
   		}
 		returnText += '</ul>'
+  	}
+  	return returnText
+  };
+
+	var moreInformation = function() {
+  	returnText = "";
+  	if (input[currentRow].information != "") {
+  		returnText = '<img class="help" src="s/icon-help.svg">';
   	}
   	return returnText
   };
