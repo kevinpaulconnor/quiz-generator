@@ -133,7 +133,6 @@
     }
     $('.question-' + questionNumber).append('<div class="last"><p>' + input[lastRow].text + '</p><br/>');
     $('.quiz-container').append('<button class="flowchart-button qq-button restart">Restart</button></div>');
-    shareQuiz();
     trackEvent('completed', 'Flowchart completed');
     $('.restart').on('click', restart);
   };
@@ -155,38 +154,6 @@
       _gaq.push($.merge(['_trackEvent', 'flowchart'], arguments));
     }
   }
-
-  // social media sharing
-  var link = document.URL;
-  var shareQuiz = function() {
-    switch (pub) {
-      case 'vox':
-        account = voxdotcom;
-        break;
-      case 'sbnation':
-        account = sbnation;
-        break;
-      case 'verge':
-        account = theverge;
-        break;
-      case 'polygon':
-        account = polygon;
-        break;
-      default:
-        account = 'voxproduct';
-    }
-    $(".quiz-container").append("<div class='scorecard'><div id='social-media'><ul><li><a href='http://www.facebook.com/sharer.php?u=" + link + "' target='_blank'>" + facebook + "</a></li><li><a href='http://twitter.com/home?status=Check out this flowchart " + link + " via @" +  account + "' target='_blank'>" + twitter   + "</a></li><li><a href='https://plus.google.com/share?url=" + link + "' target='_blank'>" + google + "</a></li></ul></div></div>");
-
-    $('.quiz-container .fb-share').click(function() {
-      trackEvent('shared-on-fb', 'Quiz shared on Facebook');
-    });
-    $('.quiz-container .twitter-share').click(function() {
-      trackEvent('shared-on-twitter', 'Quiz shared on Twitter');
-    });
-    $('.quiz-container .gplus-share').click(function() {
-      trackEvent('shared-on-gplus', 'Quiz shared on Google+');
-    });
-  };
 
   // attach quiz and vertical-specific stylesheets
   $('head').append('<link rel="stylesheet" href="s/flowchart.css" type="text/css" />');
