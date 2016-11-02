@@ -69,7 +69,7 @@ span.help img {
 }
 
 .hover-content {
-	opacity: 0;
+	display: none;
 	position: absolute;
 	background-color: rgb(161,220,51);
 	border-radius: 25px;
@@ -78,5 +78,5 @@ span.help img {
 }
 
 span.help:hover .hover-content {
-	opacity: 1
+	display: inline;
 } 
