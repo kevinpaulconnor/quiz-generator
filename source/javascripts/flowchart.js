@@ -58,17 +58,17 @@
   // build question in flowchart - scrolldown enabled for all questions except the last one
   var buildQuestion = function(slug) {
     compareSlug(slug);
-    // these three conditionals have some wet code, now that more features are being added
-    // well, it was already a little wet
-    if (currentRow === 0) {
-      $(".quiz-container").append("<div class='question-" + questionNumber + "'><div class='question'>" + input[currentRow].text + moreInformation() + "</div></div>");
-    } else {
-      if ($(window).width() > 500) {
-        $(".quiz-container").append("<div class='question-" + questionNumber + "' style='display:none;'><div class='question'>" + input[currentRow].text + writeBullets() + moreInformation() + "</div></div>");
+    var bigWindow = false;
+    if ($(window).width() > 500) {
+    	bigWindow = true;
+    }
+    var style = (bigWindow && currentRow != 0) ? "display:none;": '';
+    $(".quiz-container").append("<div class='question-" + questionNumber + "' style='" + style + "'><div class='question'>" + input[currentRow].text + writeBullets() + moreInformation() + "</div></div>");
+    if (currentRow != 0) {
+      if (bigWindow) {
         $(".question-" + (questionNumber)).fadeIn('slow');
       } else {
-        $(".quiz-container").append("<div class='question-" + questionNumber + "'><div class='question'>" + input[currentRow].text + writeBullets(slug) + moreInformation() + "</div></div>");
-        pageScroll(".question-" + (questionNumber));
+				pageScroll(".question-" + (questionNumber));
       }
     }
     writeOptions(currentRow);
