@@ -93,7 +93,7 @@
 	var moreInformation = function() {
   	returnText = "";
   	if (input[currentRow].information != "") {
-  		returnText = '<img class="help" src="s/icon-help.svg">';
+  		returnText = '<span class="help"><img src="s/icon-help.svg"><span class="hover-content">'+ input[currentRow].information +'</div>';
   	}
   	return returnText
   };

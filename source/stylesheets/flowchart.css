@@ -63,7 +63,20 @@ p.down-arrow {
     margin-bottom: 0px;
     line-height: 1.5em; }
     
-img.help {
+span.help img {
 	width: 16px;
 	height: 16px;
 }
+
+.hover-content {
+	opacity: 0;
+	position: absolute;
+	background-color: rgb(161,220,51);
+	border-radius: 25px;
+	right: -10px;
+	top: -25px;
+}
+
+span.help:hover .hover-content {
+	opacity: 1
+} 
