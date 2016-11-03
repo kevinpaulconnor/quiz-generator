@@ -63,8 +63,7 @@ p.down-arrow {
     margin-bottom: 0px;
     line-height: 1.5em; }
     
-span.help img {
-	display: block;
+div.help img {
 	border: 1px solid black;
 	margin: 0 auto;
 	width: 48px;
@@ -80,7 +79,7 @@ span.help img {
 	max-width: 500px;
 }
 
-html.non-touch span.help:hover .hover-content,
-span.help .hover-content.touch {
+html.non-touch div.help:hover ~ .hover-content,
+div.help ~ .hover-content.touch {
 	display: block;
 } 

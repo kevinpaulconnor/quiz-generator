@@ -75,8 +75,8 @@
     }
     // there is something that is awkward about this...
     if (touchsupport) {
-    	$(questionSelector + ' span.help')[0].addEventListener("touchstart", function() { $(questionSelector + ' .hover-content' ).addClass('touch') }, false);
-      $(questionSelector  + ' span.help')[0].addEventListener("touchend", function() { $(questionSelector + ' .hover-content' ).removeClass('touch') }, false);
+    	$(questionSelector + ' div.help')[0].addEventListener("touchstart", function() { $(questionSelector + ' .hover-content' ).addClass('touch') }, false);
+      $(questionSelector  + ' div.help')[0].addEventListener("touchend", function() { $(questionSelector + ' .hover-content' ).removeClass('touch') }, false);
     }
     writeOptions(currentRow);
     trackEvent('q' + questionNumber + '-displayed', 'Q' + questionNumber + ' displayed');
@@ -100,7 +100,7 @@
 	var moreInformation = function() {
   	returnText = "";
   	if (input[currentRow].information != "") {
-  		returnText = '<span class="help"><img src="s/icon-help.svg"><span class="hover-content">'+ input[currentRow].information +'</div>';
+  		returnText = '<div class="help"><img src="s/icon-help.svg"></div><div class="hover-content">'+ input[currentRow].information +'</div>';
   	}
   	return returnText
   };
