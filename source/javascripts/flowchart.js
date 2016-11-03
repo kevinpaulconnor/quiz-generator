@@ -6,6 +6,7 @@
   var questionNumber = 0;
   var separator = ",";
   altSeparator = "&";
+  var touchsupport;
   
   // social media icons
   var facebook = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' style='height: 2em;'><circle cx='8' cy='8' r='8' class='shape-1'></circle><path fill='#fff' d='M8.5 3.7h1.4v1.6h-1c-.2 0-.4.1-.4.4v.9h1.4l-.1 1.7h-1.3v4.5h-1.9v-4.5h-.9v-1.7h.9v-1c0-.7.4-1.9 1.9-1.9z' class='shape-2'></path><foreignObject width='200' height='100'><text><tspan style='color:#414141; margin-right: 20px; margin-left: 15px;''>Facebook</tspan></text></foreignObject></svg>";
@@ -63,13 +64,19 @@
     	bigWindow = true;
     }
     var style = (bigWindow && currentRow != 0) ? "display:none;": '';
+    var questionSelector = ".question-" + questionNumber
     $(".quiz-container").append("<div class='question-" + questionNumber + "' style='" + style + "'><div class='question'>" + input[currentRow].text + writeBullets() + moreInformation() + "</div></div>");
     if (currentRow != 0) {
       if (bigWindow) {
-        $(".question-" + (questionNumber)).fadeIn('slow');
+        $(questionSelector).fadeIn('slow');
       } else {
-				pageScroll(".question-" + (questionNumber));
+				pageScroll(questionSelector);
       }
+    }
+    // there is something that is awkward about this...
+    if (touchsupport) {
+    	$(questionSelector + ' span.help')[0].addEventListener("touchstart", function() { $(questionSelector + ' .hover-content' ).addClass('touch') }, false);
+      $(questionSelector  + ' span.help')[0].addEventListener("touchend", function() { $(questionSelector + ' .hover-content' ).removeClass('touch') }, false);
     }
     writeOptions(currentRow);
     trackEvent('q' + questionNumber + '-displayed', 'Q' + questionNumber + ' displayed');
@@ -188,10 +195,10 @@
   
   $(document).ready(function(){
     trackEvent('loaded', 'Quiz is loaded');
-    unpackQuizHack();
-    var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+    touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
 		if (!touchsupport){ // browser doesn't support touch
     	document.documentElement.className += " non-touch"
 		}
+    unpackQuizHack();
   });
 })(jQuery);

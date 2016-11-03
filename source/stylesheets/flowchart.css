@@ -77,6 +77,7 @@ span.help img {
 	top: -25px;
 }
 
-html.non-touch span.help:hover .hover-content {
+html.non-touch span.help:hover .hover-content,
+span.help .hover-content.touch {
 	display: inline;
 } 
