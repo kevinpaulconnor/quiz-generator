@@ -64,20 +64,23 @@ p.down-arrow {
     line-height: 1.5em; }
     
 span.help img {
-	width: 16px;
-	height: 16px;
+	display: block;
+	border: 1px solid black;
+	margin: 0 auto;
+	width: 48px;
+	height: 48px;
 }
+
 
 .hover-content {
 	display: none;
-	position: absolute;
 	background-color: rgb(161,220,51);
 	border-radius: 25px;
-	right: -10px;
-	top: -25px;
+	margin: 5px auto 0;
+	max-width: 500px;
 }
 
 html.non-touch span.help:hover .hover-content,
 span.help .hover-content.touch {
-	display: inline;
+	display: block;
 } 
