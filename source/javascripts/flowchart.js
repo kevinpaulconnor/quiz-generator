@@ -123,36 +123,22 @@
     var row = input[currentRow];
     var connectsLabels = row.connectstext.split(separator);
     connectsTo = row.connectsto.split(separator);
-    if (connectsTo[0] == 'End') {
-      $('.question-' + questionNumber).fadeIn(400);
-      lastQuestion();
+    if (connectsTo[0] == 'END') {
+      showForm();
     } else {
       for (var i = 0; i < connectsLabels.length; i ++) {
         $('.question-' + questionNumber).append("<button class='flowchart-button qq-button choice-" + questionNumber + "-" + i + "'>" + connectsLabels[i] + "</button>");
         $('.choice-' + questionNumber + '-' + i).on('click', getClass);
-      }
-      $('.question-' + questionNumber).fadeIn(400);
-      questionNumber++;
+      }      
     }
+    $('.question-' + questionNumber).fadeIn(400);
+    questionNumber++;
   };
 
   var getClass = function () {
     var classes = $(this).attr('class').split(' ');
     number = classes[classes.length - 1].split('-');
     getSlug(cleanSlug(connectsTo[number[number.length- 1]]), this);
-  };
-
-  // handles last question and social media sharing buttons
-  var lastQuestion = function() {
-    for (var i = 0; i < input.length; i++) {
-      input[i].slug = cleanSlug(input[i].slug);
-      if (input[i].slug == 'end') {
-        lastRow = i;
-        break;
-      }
-    }
-    $('.question-' + questionNumber).append('<div class="last"><p>' + input[lastRow].text + '</p><br/>');
-    showForm();
   };
 
   // restarts flowchart from beginning
@@ -216,7 +202,16 @@
   var updateForm = function (selection) {
   	var selector = 'input[name="SQF_QUESTION_' + question.current.number + '"]';
   	//enableInput(selector);
-  	$(selector).val("QUESTION: " + question.current.text + ", ANSWER: " + selection.innerHTML);
+  	var initialValue = "QUESTION: " + question.current.text + ", ANSWER: " + selection.innerHTML 
+  	var amendedValue = initialValue;
+  	console.log(initialValue);
+  	// squarespace email freaks out if you pass values of 100 characters or more
+  	// so, truncate and prepend some ellipses
+  	if (initialValue.length > 100) {
+  		amendedValue = "..." + initialValue.substr((initialValue.length - 96), initialValue.length-1);
+  	}
+  	console.log(amendedValue);
+  	$(selector).val(amendedValue);
   }
   
   // squarespace is providing the submit form so we don't have a lot of control.
@@ -239,7 +234,7 @@
     	document.documentElement.className += " non-touch"
 		}
 		//disableHiddenInputs();
-		//hideForm();
+		hideForm();
 		
     unpackQuizHack();
   });
