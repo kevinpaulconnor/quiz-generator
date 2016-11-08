@@ -204,13 +204,11 @@
   	//enableInput(selector);
   	var initialValue = "QUESTION: " + question.current.text + ", ANSWER: " + selection.innerHTML 
   	var amendedValue = initialValue;
-  	console.log(initialValue);
   	// squarespace email freaks out if you pass values of 100 characters or more
   	// so, truncate and prepend some ellipses
   	if (initialValue.length > 100) {
   		amendedValue = "..." + initialValue.substr((initialValue.length - 96), initialValue.length-1);
   	}
-  	console.log(amendedValue);
   	$(selector).val(amendedValue);
   }
   
