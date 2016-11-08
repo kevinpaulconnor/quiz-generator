@@ -86,7 +86,7 @@
       }
     }
     // there is something that is awkward about this...
-    if (touchsupport) {
+    if (touchsupport && input[currentRow].information != "") {
     	$(questionSelector + ' div.help')[0].addEventListener("touchstart", function() { $(questionSelector + ' .hover-content' ).addClass('touch') }, false);
       $(questionSelector  + ' div.help')[0].addEventListener("touchend", function() { $(questionSelector + ' .hover-content' ).removeClass('touch') }, false);
     }
