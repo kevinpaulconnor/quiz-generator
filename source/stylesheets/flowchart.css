@@ -87,3 +87,7 @@ html.non-touch div.help:hover ~ .hover-content,
 div.help ~ .hover-content.touch {
 	display: block;
 } 
+
+li.bullets {
+	font-weight: bold;
+}

@@ -102,7 +102,7 @@
   		returnText = '<ul>';
   		var bullets = input[currentRow].bullets.split(altSeparator);
   		for (var i=0; i < bullets.length;i++) {
-  				returnText += '<li>'+ bullets[i] +'</li>'
+  				returnText += '<li class="bullets">'+ bullets[i] +'</li>'
   		}
 		returnText += '</ul>'
   	}
