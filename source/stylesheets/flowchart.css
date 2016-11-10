@@ -88,6 +88,10 @@ div.help ~ .hover-content.touch {
 	display: block;
 } 
 
+ul {
+	list-style-type: none;
+}
+
 li.bullets {
 	font-weight: bold;
 }
