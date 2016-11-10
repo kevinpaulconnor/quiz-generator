@@ -17,8 +17,9 @@
     	this._text = state.text;
   	}
   };
-  var thirdPersonDefault = 'the intending immigrant';
-  var thirdPersonNameToUse = '';
+  var immigrantDefault = 'the intending immigrant';
+  var immigrantName = '';
+  var respondentName;
 
   var pageScroll = function(target) {
     $('html,body').animate({
@@ -87,8 +88,8 @@
   
   var thirdPersonPronounReplace = function(text) {
   	replaceText = text;
-  	if (thirdPersonNameToUse != '') {
-  		replaceText = text.replace(thirdPersonNameToUse, thirdPersonDefault);
+  	if (immigrantName != '') {
+  		replaceText = text.replace(immigrantDefault, immigrantName);
   	}
   	return replaceText
   }
@@ -98,7 +99,7 @@
   var writeBullets = function() {
   	returnText = "";
   	if (input[currentRow].bullets != "") {
-  		returnText = '<ul type="disc">';
+  		returnText = '<ul>';
   		var bullets = input[currentRow].bullets.split(altSeparator);
   		for (var i=0; i < bullets.length;i++) {
   				returnText += '<li>'+ bullets[i] +'</li>'
@@ -211,6 +212,70 @@
   	$(selector).val(amendedValue);
   }
   
+  function renderNameInput(type) {
+		return '<div class="field"><input class="field-element field-control" name="fname" x-autocompletetype="given-name" type="text" spellcheck="false" maxlength="30" data-title="'+type+'">'+'Name</div>';
+	}
+  
+  function determineNames() {
+  	  	$('.spacer-block').html('<fieldset class="names">'+
+              '<div class="title">' + "What is the intended immigrant's name?" + '</div>' +
+              renderNameInput('immigrant') + 
+              renderSameName() +
+              renderDifferentName() +
+              '</fieldset>');
+        setNameHandlers();
+  }
+  
+  function renderSameName() {
+  	return '<div class="title">' + "Are you the intended immigrant?" + '</div>' +
+  					'<input name="same" type="radio" value="yes">Yes</input><input name="same" type="radio" value="no">No</input>';
+  }
+  
+  function renderDifferentName() {
+  	return '<div class="differentName hidden"><div class="title">What is your name?</div>' +
+  		renderNameInput('respondent') + '</div>'
+  }
+  
+  function setNameHandlers() {
+  	$('input[name="same"]').click(function() {
+  		immigrantName = $('input[data-title="immigrant"]').val();
+ 			$('input[name="SQF_IMMIGRANTNAME"]').val(immigrantName);
+ 			
+  		if ($('input:radio[name="same"]:checked').val() == 'yes') {
+  			$('fieldset.names').find('input').attr("disabled", "disabled");
+  			$('input[name="SQF_RESPONDENTNAME"]').val(immigrantName);
+  			unpackQuizHack();
+  		}
+  		if ($('input:radio[name="same"]:checked').val() == 'no') {
+  			$('.differentName').removeClass("hidden");
+  		}
+  	});
+  	$('.differentName input').blur(function(){
+  		respondentName = $('input[data-title="respondent"]').val();
+  		$('input[name="SQF_RESPONDENTNAME"]').val(respondentName);
+  		// trying to do this in 'same' handler, but leave in case i need it
+  		//$('input[name="SQF_IMMIGRANTNAME"]').val($('input[data-title="immigrant"]').val());
+  		$('fieldset.names').find('input').attr("disabled", "disabled");
+  		unpackQuizHack();
+  	});
+  }
+  
+  /*<fieldset id="name-yui_3_17_2_3_1478197886898_6043" class="form-item fields name required">
+              <div class="title">Name <span class="required">*</span></div>
+              <legend>Name</legend>
+              
+                <div class="field first-name">
+                  <label class="caption"><input class="field-element field-control" name="fname" x-autocompletetype="given-name" type="text" spellcheck="false" maxlength="30" data-title="First">
+                  First Name</label>
+                </div>
+                <div class="field last-name">
+                  <label class="caption"><input class="field-element field-control" name="lname" x-autocompletetype="surname" type="text" spellcheck="false" maxlength="30" data-title="Last">
+                  Last Name</label>
+                </div>
+              </fieldset>
+  <input class="button sqs-system-button sqs-editable-button" type="button" value="Get Started">
+  */
+  
   // squarespace is providing the submit form so we don't have a lot of control.
   // we only want to send question data that we have with our emailed hidden inputs, so disable everything to start
   // but, squarespace email sends the disabled inputs into the email even if disabled, so
@@ -232,7 +297,7 @@
 		}
 		//disableHiddenInputs();
 		hideForm();
-		
-    unpackQuizHack();
+		determineNames();	
+    //unpackQuizHack();
   });
 })(jQuery);
