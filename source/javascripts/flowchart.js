@@ -217,7 +217,7 @@
 	}
   
   function determineNames() {
-  	  	$('.spacer-block').html('<fieldset class="names">'+
+  	  	$('.names').html('<fieldset class="names">'+
               '<div class="title">' + "What is the intended immigrant's name?" + '</div>' +
               renderNameInput('immigrant') + 
               renderSameName() +
