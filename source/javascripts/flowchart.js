@@ -213,7 +213,7 @@
   }
   
   function renderNameInput(type) {
-		return '<div class="field"><input class="field-element field-control" name="fname" x-autocompletetype="given-name" type="text" spellcheck="false" maxlength="30" data-title="'+type+'">'+'Name</div>';
+		return '<div class="field">Name:<input class="name" maxlength="30" data-title="'+type+'"></div>';
 	}
   
   function determineNames() {

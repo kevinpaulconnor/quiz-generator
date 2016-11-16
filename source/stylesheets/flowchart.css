@@ -95,3 +95,16 @@ ul {
 li.bullets {
 	font-weight: bold;
 }
+
+fieldset.names div, fieldset.names input {
+	text-align: center;
+	margin: 5px auto;
+}
+
+fieldset.names input.name {
+	margin-left: 5px;
+}
+
+fieldset.names div.title {
+	font-weight: bold;
+}
